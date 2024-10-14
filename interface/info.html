@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jinddo's 맛집추천</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="ipad">
+        <div class="screen">
+            <h1 class="main_title">'맛취향' 반영 맛집 추천 시스템<p>by TEAM jinddo</p>
+            </h1>
+
+            <div class="wrapper">
+                <div class="detail_box">
+                    <h3 class="title">농민백암왕순대 선릉본점</h3>
+                    <div class="detail">
+                        <div class="chart_box">그래프영역</div>
+                        <ul>
+                            <li>단맛 : <span>0.0</span></li>
+                            <li>매운맛 : <span>0.0</span></li>
+                            <li>짠맛 : <span>0.0</span></li>
+                            <li>신맛 : <span>0.0</span></li>
+                            <li>담백한맛 : <span>0.0</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info_box2">
+                    <ul>
+                        <li class="score_text">jinddo's 평점 : <span class="score">3.1</span></li>
+                        <li>한식</li>
+                        <li>서울 강남구 봉은사로68길 6-5 1층서울 강남구 봉은사로68길 6-5 1층</li>
+                        <li>
+                            <a class="url"
+                                href="https://map.naver.com/p/search/%ED%8E%98%EB%A6%AC%EC%A7%80/place/1166721504?c=15.00,0,0,0,dh&placePath=?entry=pll&from=nx&fromNxList=true&searchType=place"
+                                class="url">
+                                <i class="fa-solid fa-globe"></i><span>네이버 지도</span>로 이동
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="review_box">
+                    <h3 class="title">방문하셨나요?</h3>
+                    <div class="review_btn_wrap">
+                        <button type="button" class="review_btn" id="openModal">5초 평점주러 가기!</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <ul class="fnb">
+                <li><a href="recommand.html">추천페이지</a></li>
+                <li><a href="main.html"><i class="fa-solid fa-house"></a></i></li>
+                <li><a href="login.html">로그아웃</a></li>
+            </ul>
+
+        </div>
+        <div class="home_button"></div>
+    </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal_content">
+            <span class="close">&times;</span>
+            <p class="title">방문하신곳은 어떠셨나요?</p>
+            <select>
+                <option selected>-- 선택해주세요 --</option>
+                <option>5점</option>
+                <option>4점</option>
+                <option>3점</option>
+                <option>2점</option>
+                <option>1점</option>
+            </select>
+        </div>
+    </div>
+
+
+    <!-- Modal js -->
+    <script src="script.js"></script>
+
+
+</body>
+
+
+
+
+
+</html>
