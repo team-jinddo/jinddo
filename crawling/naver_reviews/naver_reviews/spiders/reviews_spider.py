@@ -40,9 +40,9 @@ class ReviewSpider(scrapy.Spider):
     }
     
     # 크롤링할 bizId와 cidList를 파일로부터 읽어옵니다.
-    data = pd.read_csv("C:/Users/SesacPython/Desktop/final_project/bizId_data_2.csv", index_col=0) # bizId_data
-    bizId_list = data['bizId'].tolist()[982:]
-    cidList_list = data['cidList'].tolist()[982:]
+    data = pd.read_csv("/Users/nojaehyeon/Desktop/workspace/project_4/data/bizid_data_2.csv", index_col=0) # bizId_data
+    bizId_list = data['bizId'].tolist()[1729:2323] # 1653:2323, 1692, 1705, 1718, 1729
+    cidList_list = data['cidList'].tolist()[1729:2323]
     
     # 전체 리뷰 데이터를 저장할 리스트 초기화
     all_reviews = []
@@ -77,7 +77,7 @@ class ReviewSpider(scrapy.Spider):
             'Content-Type': 'application/json',
             'referer': f'https://pcmap.place.naver.com/restaurant/{biz_id}/review/ugc',
             'Connection': 'keep-alive',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+            'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'
         }
 
         data_payload = [
@@ -197,7 +197,7 @@ class ReviewSpider(scrapy.Spider):
             reviews_df = pd.DataFrame(self.all_reviews)
 
             # 데이터프레임 생성 및 저장 경로 설정
-            save_path = 'C:/Users/SesacPython/Desktop/final_project/naver_reviews_all_2.csv'
+            save_path = '/Users/nojaehyeon/Desktop/final_project/naver_reviews_all_3.csv'
             # 기존 파일이 있는 경우 이어서 작성하고, 없는 경우 새로 생성합니다.
             if not os.path.exists(save_path):
                 reviews_df.to_csv(save_path, index=False, encoding='utf-8-sig')
