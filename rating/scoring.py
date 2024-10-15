@@ -1,3 +1,16 @@
+import pandas as pd
+
+def groupby_valcount(review_df):
+    polarity_list = []
+    for polarity in review_df.polarity.to_list():
+        polarity_list.extend(eval(polarity))
+
+    review_df_2 = review_df.drop(columns='polarity')
+    review_df_2['polarity'] = polarity_list
+    valcount_by_bizid = review_df_2.groupby('biz_id')['polarity'].value_counts().unstack().fillna(0).astype(int)
+    valcount_by_bizid = valcount_by_bizid.rename(columns={0:-1}) # 부정은 극성 0으로 되어 있는데 부정 극성을 -1로
+
+
 def add_z_score(df): # df: 극성별 개수가 저장된 dataframe
     s_values = {}  # 각 biz_id의 s 값을 저장할 딕셔너리
     for id, counts in df.iterrows():
