@@ -1,0 +1,44 @@
+
+.jinddo_logo {
+    margin: 2rem;
+    font-family: 'Pacifico';
+    cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.jinddo_footer_button {
+    font-size: 0.9rem;
+}
+
+.jinddo_header {
+    text-align: center; margin: 2rem 0;
+}
+
+.jinddo_footer {
+    text-align: center; margin-top: 2rem;
+}
+
+@media screen and (max-width:500px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.jinddo_header_nav {
+    margin: 1rem 0.5rem;
+}
+
+.jinddo_header_navbar {
+    margin: 1rem 0;
+}
