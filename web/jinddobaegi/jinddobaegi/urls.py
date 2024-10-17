@@ -18,8 +18,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from venueapp.views import VenueListView
+
 urlpatterns = [
+    path('', VenueListView.as_view(), name='home'),
+
     path("admin/", admin.site.urls),
     path("accounts/", include('accountapp.urls')),
     path("profiles/", include('profileapp.urls')),
+    path("venues/", include('venueapp.urls')),
 ]

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+  <div style="text-align: center; max-width: 800px; margin: 4rem auto;">
+
+    <h1>
+      {{ target_venue.name }}
+    </h1>
+    <h5>
+      {{ target_venue.location | safe }}
+    </h5>
+
+    <hr>
+
+    <div style="text-align: left;">
+      {{ target_venue.link | safe }}
+    </div>
+
+
+    <hr>
+
+    {% for comment in target_article.comment.all %}
+      {% include 'commentapp/detail.html' with comment=comment %}
+    {% endfor %}
+
+    {% include 'commentapp/create.html' with article=target_article %}
+
+  </div>
+</div>
+
+{% endblock %}

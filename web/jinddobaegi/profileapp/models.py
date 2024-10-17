@@ -14,4 +14,5 @@ class Profile(models.Model):
     spiciness = models.IntegerField(default=3)
     saltiness = models.IntegerField(default=3)
     sourness = models.IntegerField(default=3)
-    meal_categories = models.CharField(max_length=255, blank=True) # Store selected categories as a comma-separated string
+    cleanliness = models.IntegerField(default=3)
+    categories = models.CharField(max_length=255, blank=True) # Store selected categories as a comma-separated string

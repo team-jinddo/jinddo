@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "bootstrap4",
     "accountapp",
     "profileapp",
+    "venueapp",
 ]
 
 MIDDLEWARE = [
@@ -85,12 +86,12 @@ WSGI_APPLICATION = "jinddobaegi.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -140,9 +141,21 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = reverse_lazy('accountapp:create')
+LOGIN_REDIRECT_URL = reverse_lazy('accountapp:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DATABASES = {
+    'default': {
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
+        'OPTIONS': {'charset': env('DB_CHARSET')},  # Uncomment if needed for your database
+    }
+}
