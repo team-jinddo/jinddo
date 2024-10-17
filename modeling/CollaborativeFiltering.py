@@ -42,7 +42,7 @@ class CollaborativeFiltering:
 
 if __name__ == "__main__":
     recommender = CollaborativeFiltering(
-        "C:/Users/SesacPython/Desktop/final_project/scoring_taste_user_based.csv",
+        "C:/Users/SesacPython/Desktop/final_project/scoring_taste_user_based_fin.csv",
         "C:/Users/SesacPython/Desktop/final_project/score_by_bizid.csv",
         "C:/Users/SesacPython/Desktop/final_project/visit_res.csv"
     )
