@@ -31,11 +31,11 @@ def add_z_score(df): # df: 극성별 개수가 저장된 dataframe
     # 각 biz_id에 대해 z 값 계산 및 리스트에 저장
     z_list = []
     for id, s in s_values.items():
-        # z 값 계산: (s - s_min) / (s_max - s_min) * 4 + 1
+        # z 값 계산: (s - s_min) / (s_max - s_min) * 10 - 5
         if s_max - s_min == 0:  # s_max와 s_min이 동일할 경우 z 값 설정
             z = 1  # 모든 값이 동일한 경우 z는 1로 설정 (분모가 0이 되는 것을 방지)
         else:
-            z = ((s - s_min) / (s_max - s_min)) * 4 + 1
+            z = ((s - s_min) / (s_max - s_min)) * 10 - 5
         z_list.append(z)  # z 값을 리스트에 추가
     
     df['score'] = z_list
