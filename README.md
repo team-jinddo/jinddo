@@ -5,6 +5,10 @@ Alternative Data Analytic Project
 ---
 <br>
 
+![image](https://github.com/user-attachments/assets/bf4ab0e5-0d9b-452e-a4f6-c4bf9ba471c1)
+
+<br>
+
 ## 팀원
 ---
 - **김도형, 노충완, 윤종헌, 이현정, 허홍**
