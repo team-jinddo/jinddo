@@ -1,6 +1,6 @@
 # jinddo
 
-# Final_Project_TEAM_3_jinddo
+# “맛 취향”반영 맛집 추천 시스템
 ---
 <br>
 
