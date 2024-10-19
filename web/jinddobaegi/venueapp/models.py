@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 # Create your models here.
 
 
 class Venue(models.Model):
-    biz_id = models.CharField(max_length=255)
+    biz_id = models.CharField(max_length=255, null=True)
 
     name = models.CharField(max_length=255)
 
@@ -36,4 +37,3 @@ class UserVisit(models.Model):
     saltiness = models.IntegerField(null=True)
     sourness = models.IntegerField(null=True)
     cleanliness = models.IntegerField(null=True)
-
