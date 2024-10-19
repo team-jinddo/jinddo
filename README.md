@@ -1,5 +1,4 @@
 # jinddo
-Alternative Data Analytic Project
 
 # Final_Project_TEAM_3_jinddo
 ---
