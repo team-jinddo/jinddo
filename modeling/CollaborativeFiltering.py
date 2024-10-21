@@ -11,7 +11,7 @@ class CollaborativeFiltering:
     
     def cos_sim_calculator(self, user_vector):
         """
-        유저의 맛 취향 벡터를 기반으로 기존 유저와의 코사인 유사도를 계산합니다.
+        유저의 맛 취향 벡터 기반 기존 유저와의 코사인 유사도 계산
         :param user_vector: 신규 유저의 맛 취향 벡터
         :return: 유사도 데이터프레임
         """
@@ -23,7 +23,7 @@ class CollaborativeFiltering:
         """
         가장 유사한 유저의 방문 목록 반환
         :param similarity_df: 유사도 데이터프레임
-        :return: 방문한 사업장 ID 리스트
+        :return: 방문한 biz ID 리스트
         """
         most_similar_user_id = similarity_df.iloc[0]['author_id']
         visit_list = eval(self.visit_res[self.visit_res['author_id'] == most_similar_user_id]['biz_id'].values[0])
@@ -31,10 +31,10 @@ class CollaborativeFiltering:
     
     def recommended_bizid(self, visit_list, n):
         """
-        상위 n개의 사업장 ID를 추천합니다.
-        :param visit_list: 방문한 사업장 ID 리스트
-        :param n: 추천할 사업장 수
-        :return: 상위 n개의 사업장 ID 리스트
+        상위 n개의 biz ID를 추천합니다.
+        :param visit_list: 방문한 biz ID 리스트
+        :param n: 추천할 음식점 수
+        :return: 상위 n개 biz ID 리스트
         """
         sorted_score_bizid = self.score_by_bizid[self.score_by_bizid['biz_id'].isin(visit_list)].sort_values(by='score', ascending=False)
         return sorted_score_bizid.iloc[:n, 0].to_list()
