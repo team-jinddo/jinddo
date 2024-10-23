@@ -30,8 +30,8 @@
     {% if venue_list %}
     <div class="container">
       {% for venue in venue_list %}
-        <a href="{% url 'venueapp:detail' pk=article.pk %}">
-            {% include 'snippets/card.html' with venue=venue %}
+        <a href="{% url 'venueapp:detail' pk=venue.pk %}">
+            {% include 'snippets/venue.html' with venue=venue %}
         </a>
         {% endfor %}
     </div>
