@@ -1,8 +1,11 @@
 # jinddo
-Alternative Data Analytic Project
 
-# Final_Project_TEAM_3_jinddo
+# “맛 취향”반영 맛집 추천 시스템
 ---
+<br>
+
+![image](https://github.com/user-attachments/assets/bf4ab0e5-0d9b-452e-a4f6-c4bf9ba471c1)
+
 <br>
 
 ## 팀원
