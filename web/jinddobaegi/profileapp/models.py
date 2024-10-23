@@ -16,7 +16,7 @@ class Profile(models.Model):
     saltiness = models.IntegerField(default=3)
     sourness = models.IntegerField(default=3)
     cleanliness = models.IntegerField(default=3)
-    categories = models.CharField(max_length=255, blank=True) # Store selected categories as a comma-separated string
+    categories = models.CharField(max_length=255, blank=True, null=True) # Store selected categories as a comma-separated string
 
     asian = models.FloatField(null=True, blank=True)
     bar = models.FloatField(null=True, blank=True)
