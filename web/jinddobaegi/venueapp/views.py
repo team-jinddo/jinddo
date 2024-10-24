@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -21,4 +22,7 @@ class VenueListView(ListView):
     model = Venue
     context_object_name = 'venue_list'
     template_name = 'venueapp/list.html'
-    paginate_by = 5
+
+    def get_queryset(self):
+        # Return the top 10 venues ordered by score in descending order
+        return Venue.objects.filter(recommendations__isnull=False).order_by('-score')[:10]

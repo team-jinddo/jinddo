@@ -9,6 +9,9 @@
       {{ target_venue.name }}
     </h1>
     <h5>
+      {{ target_venue.score | safe }}
+    </h5>
+    <h5>
       {{ target_venue.location | safe }}
     </h5>
 
