@@ -26,12 +26,15 @@ class VenueDetailView(DetailView):
         context['recommended_venues'] = venue.get_recommended_venues()
 
         recommender = RestaurantRecommender()
+
+        user = self.request.user
+        profile = user.profile
         user_preferences = {
-            'sweetness': 2,
-            'spiciness': 3,
-            'saltiness': 5,
-            'sourness': 1,
-            'cleanliness': 4
+            'sweetness': profile.sweetness,
+            'spiciness': profile.spiciness,
+            'saltiness': profile.saltiness,
+            'sourness': profile.sourness,
+            'cleanliness': profile.sourness
         }
 
         # Get recommendations based on user preferences
