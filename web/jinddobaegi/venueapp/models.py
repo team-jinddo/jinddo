@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 
 
 # Create your models here.
@@ -23,7 +24,20 @@ class Venue(models.Model):
 
 
     score = models.FloatField(default=3)
-    recommendations = models.CharField(max_length=255, default='')
+    recommendations = models.CharField(max_length=255, default='') # Comma-separated venue IDs
+
+    def get_recommended_venues(self):
+        # Split the recommendations string into a list of IDs
+        recommended_ids_str = self.recommendations.split(',')
+        # Convert the list of string IDs to a list of integers
+        recommended_ids = [
+            int(id_str) for id_str in recommended_ids_str
+            if id_str.isdigit() # Check if the string is a digit
+        ]
+        # Retrieve the Venue objects corresponding to these IDs
+        venues = Venue.objects.filter(biz_id__in=recommended_ids)
+        print(venues)
+        return venues
 
 
 class UserVisit(models.Model):

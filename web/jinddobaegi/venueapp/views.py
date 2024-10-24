@@ -8,6 +8,8 @@ from django.views.generic.edit import FormMixin
 from venueapp.models import Venue
 
 
+from .api.db_content_based_recommendation import RestaurantRecommender
+
 # Create your views here.
 
 class VenueDetailView(DetailView):
@@ -15,7 +17,31 @@ class VenueDetailView(DetailView):
     context_object_name = 'target_venue'
     template_name = 'venueapp/detail.html'
 
-    paginate_by = 25
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Get the current venue object
+        venue = self.get_object()
+        # Add the recommended venues to the context
+        context['recommended_venues'] = venue.get_recommended_venues()
+
+        recommender = RestaurantRecommender()
+        user_preferences = {
+            'sweetness': 2,
+            'spiciness': 3,
+            'saltiness': 5,
+            'sourness': 1,
+            'cleanliness': 4
+        }
+
+        # Get recommendations based on user preferences
+        recommendations = recommender.recommend(user_preferences, num_recommendations=5)
+        biz_ids = recommendations.tolist()
+
+        context['recommends'] = Venue.objects.filter(biz_id__in=biz_ids)
+
+
+        return context
 
 
 class VenueListView(ListView):
