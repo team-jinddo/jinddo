@@ -1,14 +1,21 @@
-
+{% load static %}
 
 <div class="jinddo_footer">
-    <div class="jinddo_footer_button">
-        <span>공지사항</span> |
-        <span>제휴 문의</span> |
+    <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'images/logo/jinddo_logo' %}.jpg" alt="Logo" />
+    </a>
+    <div class="jinddo_footer_button fnb_wrap">
+        <span>공지사항</span>
+        <span>|</span> 
+        <span>제휴 문의</span>
+        <span>|</span>
         <span>서비스 소개</span>
     </div>
 
-    <div>
+    <p>이메일 문의 : dkswhale@gmail.com, rachel918@hanmail.net</p>
+    <p>Copyright &copy; 2024 jjindo</p>
+    <!-- <div>
         <h6 class="jinddo_logo">진또배기</h6>
-    </div>
+    </div> -->
 
 </div>

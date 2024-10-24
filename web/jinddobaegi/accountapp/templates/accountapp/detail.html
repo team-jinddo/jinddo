@@ -3,43 +3,44 @@
 {% block content %}
 
 <div>
-  <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
-    <p>
-      {{ target_user.date_joined }}
+  <div class="pf_wrap pf_detail">
+    <p class="date">
+      <span>회원가입 일시 : </span>{{ target_user.date_joined }}
     </p>
 
     {% if target_user.profile %}
-    <h2 style="font-family: 'NanumSquareB'">
+    <h2>
+      닉네임 : 
       {{ target_user.profile.nickname }}
         {% if target_user == user %}
-          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-            edit
+          <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}" class="edit">
+            수정하기
           </a>
         {% endif %}
     </h2>
     {% else %}
       {% if target_user == user %}
         <a href="{% url 'profileapp:create' %}">
-          <h2 style="font-family: 'NanumSquareB'">
-            Create Profile
+          <h2>
+            프로필 생성하기
           </h2>
         </a>
       {% else %}
-      <h2>
-        Please set your Profile
-      </h2>
+      <p class="info">
+        프로필을 만들어주세요!
+      </p>
       {% endif %}
     {% endif %}
 
     {% if target_user == user %}
-    <a href="{% url 'accountapp:update' pk=target_user.pk %}">
+    <a href="{% url 'accountapp:update' pk=target_user.pk %}" class="info">
       <p>
-        Change Info
+        회원정보 수정
       </p>
     </a>
-    <a href="{% url 'accountapp:delete' pk=target_user.pk %}">
+    <a href="{% url 'accountapp:delete' pk=target_user.pk %}" class="quit">
       <p>
-        Quit
+        탈퇴하기
       </p>
     </a>
     {% endif %}

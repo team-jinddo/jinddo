@@ -1,8 +1,7 @@
 {% load static %}
 
-<div>
+<div class="img_wrap">
     <img src="{% static 'images/categories/' %}{{ venue.category | slugify }}.jpg"
          alt="{{ venue.category }}">
-    <p>{{ venue.name }}</p>
-
 </div>
+<p class="title">{{ venue.name }}</p>

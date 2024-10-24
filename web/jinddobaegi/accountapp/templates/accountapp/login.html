@@ -2,17 +2,15 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
-        <div>
+    <div class="pf_wrap pf_detail">
+        <div class="title_wrap pt-0">
             <h4>Login</h4>
         </div>
-        <div>
-            <form action="" method="post">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-                <input type="submit" class="btn btn-dark rounded-pill col-6 mt-4">
-            </form>
-        </div>
+        <form action="" method="post" class="wd-100">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-dark rounded-pill col-6 mt-4">
+        </form>
     </div>
 
 {% endblock %}
