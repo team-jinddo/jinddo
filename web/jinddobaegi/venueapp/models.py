@@ -28,12 +28,8 @@ class Venue(models.Model):
 
     def get_recommended_venues(self):
         # Split the recommendations string into a list of IDs
-        recommended_ids_str = self.recommendations.split(',')
+        recommended_ids = self.recommendations.split(',')
         # Convert the list of string IDs to a list of integers
-        recommended_ids = [
-            int(id_str) for id_str in recommended_ids_str
-            if id_str.isdigit() # Check if the string is a digit
-        ]
         # Retrieve the Venue objects corresponding to these IDs
         venues = Venue.objects.filter(biz_id__in=recommended_ids)
         print(venues)
