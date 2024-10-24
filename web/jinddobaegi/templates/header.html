@@ -1,8 +1,13 @@
-
+{% load static %}
 
     <div class="jinddo_header">
         <div>
-            <h1 class="jinddo_logo">진또배기</h1>
+            <h1 class="jinddo_logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'images/logo/jinddo_logo' %}.jpg" alt="Logo"
+                    style="width: 150px; height: auto"/>
+                </a>
+            </h1>
         </div>
         <a class="jinddo_header_navbar">
             <span>Recommendations</span>

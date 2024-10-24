@@ -3,10 +3,6 @@
 <div>
     <img src="{% static 'images/categories/' %}{{ venue.category | slugify }}.jpg"
          alt="{{ venue.category }}">
-    <h2>{{ venue.name }}</h2>
-
-    <p>Image Path: {% static 'images/categories/' %}{{ venue.category | slugify }}.jpg</p>
-    <p>Slugified Category: {{ venue.category | slugify }}</p>
-
+    <p>{{ venue.name }}</p>
 
 </div>
