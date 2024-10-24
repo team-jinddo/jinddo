@@ -1,33 +1,33 @@
 {% load static %}
 
     <div class="jinddo_header">
-        <div>
-            <h1 class="jinddo_logo">
-                <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo/jinddo_logo' %}.jpg" alt="Logo"
-                    style="width: 150px; height: auto"/>
+        <h1 class="jinddo_logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo/jinddo_logo' %}.jpg" alt="Logo" />
+            </a>
+        </h1>
+
+        <div class="nav_wrap">
+            <a class="jinddo_header_navbar">
+                <span>Recommendations</span>
+            </a>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'accountapp:login' %}" class="jinddo_header_nav">
+                    <span>Login</span>
                 </a>
-            </h1>
+
+                <a href="{% url 'accountapp:create' %}" class="jinddo_header_nav">
+                    <span>SignUp</span>
+                </a>
+
+            {% else %}
+                <a href="{% url 'accountapp:detail' pk=user.pk %}" class="jinddo_header_nav">
+                    <span>MyPage</span>
+                </a>
+
+                <a href="{% url 'accountapp:logout' %}">
+                    <span>logout</span>
+                </a>
+            {% endif %}
         </div>
-        <a class="jinddo_header_navbar">
-            <span>Recommendations</span>
-        </a>
-        {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:login' %}" class="jinddo_header_nav">
-                <span>Login</span>
-            </a>
-
-            <a href="{% url 'accountapp:create' %}" class="jinddo_header_nav">
-                <span>SignUp</span>
-            </a>
-
-        {% else %}
-            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="jinddo_header_nav">
-                <span>MyPage</span>
-            </a>
-
-            <a href="{% url 'accountapp:logout' %}">
-                <span>logout</span>
-            </a>
-        {% endif %}
     </div>

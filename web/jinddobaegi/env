@@ -1,0 +1,14 @@
+DEBUG=on
+SECRET_KEY=django-insecure-=n&#v-19erfg$n1fs1dz4xpa6ke54d6gmnjy*=ygt01e5jkp8u
+DATABASE_URL=psql://user:un-githubbedpassword@127.0.0.1:8458/database
+SQLITE_URL=sqlite:///my-local-sqlite.db
+CACHE_URL=memcache://127.0.0.1:11211,127.0.0.1:11212,127.0.0.1:11213
+REDIS_URL=rediscache://127.0.0.1:6379/1?client_class=django_redis.client.DefaultClient&password=ungithubbed-secret
+
+DB_ENGINE=django.db.backends.mysql
+DB_HOST=13.124.235.119
+DB_PORT=3308
+DB_USER=root
+DB_PASSWORD=12345678
+DB_NAME=jinddo_db
+DB_CHARSET=utf8mb4
