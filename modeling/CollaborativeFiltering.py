@@ -1,55 +1,89 @@
-mport pandas as pd
+import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import pymysql
 import os
-
-def get_connection():
-  return pymysql.connect(
-      host=os.getenv('DB_HOST'),
-      port=int(os.getenv('DB_PORT')),
-      user=os.getenv('DB_USER'),
-      password=os.getenv('DB_PASSWORD'),
-      db=os.getenv('DB_NAME'),
-      charset=os.getenv('DB_CHARSET'),
-      cursorclass=pymysql.cursors.DictCursor
-    )
 from dotenv import load_dotenv
 load_dotenv()
 
-def check_data(sql):
-    # 데이터베이스 연결 설정
-    connection = get_connection()
-    try:
-        with connection.cursor() as cursor:
 
-            cursor.execute(sql)
-            # 결과 가져오기
-            result = cursor.fetchall()
-            
-            # 컬럼명 가져오기
-            columns = [column[0] for column in cursor.description]
-            
-            # 결과를 데이터프레임으로 변환
-            df = pd.DataFrame(result, columns=columns)
-            
-            return df  # 데이터프레임 반환
-    except Exception as e:
-        print(f"Error occurred: {e}")
-    finally:
-        connection.close()
 
+
+# def check_data(sql):
+#     # 데이터베이스 연결 설정
+#     connection = get_connection()
+#     try:
+#         with connection.cursor() as cursor:
+
+#             cursor.execute(sql)
+#             # 결과 가져오기
+#             result = cursor.fetchall()
+            
+#             # 컬럼명 가져오기
+#             columns = [column[0] for column in cursor.description]
+            
+#             # 결과를 데이터프레임으로 변환
+#             df = pd.DataFrame(result, columns=columns)
+            
+#             return df  # 데이터프레임 반환
+#     except Exception as e:
+#         print(f"Error occurred: {e}")
+#     finally:
+#         connection.close()
+sql_venueapp_venue = "SELECT id, biz_id, score FROM venueapp_venue"
+sql_profileapp_profile = "SELECT * FROM profileapp_profile"
+sql_venueapp_uservisit = "SELECT restaurant_id, user_id FROM venueapp_uservisit"
 
 class CollaborativeFiltering:
+    def __init__(self):
+        """
+        Initialize the class by connecting to the database and loading data.
+        """
+        self.connection = self.get_connection()
+        self.venueapp_venue = self.check_data(sql_venueapp_venue)
+        self.profileapp_profile = self.check_data(sql_profileapp_profile)
+        self.venuapp_uservisit = self.check_data(sql_venueapp_uservisit)
 
-    def __init__(self, sql_venueapp_venue, sql_profileapp_profile, sql_venueapp_uservisit):
-        # 데이터 불러오기 및 초기화
-        
-        self.score_by_bizid = check_data(sql_venueapp_venue)
-        
-        self.profileapp_profile = check_data(sql_profileapp_profile)
 
-        self.visit_res = check_data(sql_venueapp_uservisit)
+    def get_connection(self):
+        return pymysql.connect(
+            host=os.getenv('DB_HOST'),
+            port=int(os.getenv('DB_PORT')),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            db=os.getenv('DB_NAME'),
+            charset=os.getenv('DB_CHARSET'),
+            cursorclass=pymysql.cursors.DictCursor
+            )
+    
+    def check_data(self, sql):
+        # 데이터베이스 연결 설정
+        try:
+            with self.connection.cursor() as cursor:
+
+                cursor.execute(sql)
+                # 결과 가져오기
+                result = cursor.fetchall()
+                
+                # 컬럼명 가져오기
+                columns = [column[0] for column in cursor.description]
+                
+                # 결과를 데이터프레임으로 변환
+                df = pd.DataFrame(result, columns=columns)
+                
+                return df  # 데이터프레임 반환"
+        except Exception as e:
+            print(f"Error occurred: {e}")
+
+        
+    # def __init__(self, sql_venueapp_venue, sql_profileapp_profile, sql_venueapp_uservisit):
+    #     # 데이터 불러오기 및 초기화
+        
+    #     self.score_by_bizid = check_data(sql_venueapp_venue)
+        
+    #     self.profileapp_profile = check_data(sql_profileapp_profile)
+
+    #     self.visit_res = check_data(sql_venueapp_uservisit)
 
     def cos_sim_calculator(self, user_taste_vector):
         """유저의 맛 취향 벡터 기반 기존 유저와의 코사인 유사도 계산"""
@@ -160,7 +194,7 @@ class CollaborativeFiltering:
         """(타입 취향 기준) 방문한 biz ID 중 상위 추천"""
         visit_list = []
         for user_id in taste_similarity_df['user_id']:
-            restaurant_ids = self.visit_res[self.visit_res['user_id'] == user_id]['restaurant_id']
+            restaurant_ids = self.venuapp_uservisit[self.venuapp_uservisit['user_id'] == user_id]['restaurant_id']
             visit_list.extend(restaurant_ids.tolist())
 
             # 중복 제거
@@ -186,16 +220,12 @@ class CollaborativeFiltering:
 
     def recommended_bizid(self, visit_list):
         """(맛 취향 기준) 방문한 biz ID 중 상위 추천"""
-        sorted_score_bizid = self.score_by_bizid[self.score_by_bizid['id'].isin(visit_list)].sort_values(by='score', ascending=False)
+        sorted_score_bizid = self.venueapp_venue[self.venueapp_venue['id'].isin(visit_list)].sort_values(by='score', ascending=False)
         return sorted_score_bizid['id'].tolist()
 
 
 if __name__ == "__main__":
-    recommender = CollaborativeFiltering(
-    "SELECT id, biz_id, score FROM venueapp_venue",
-    "SELECT * FROM profileapp_profile",
-    "SELECT restaurant_id, user_id FROM venueapp_uservisit"
-    )
+    recommender = CollaborativeFiltering()
 
     # 유저의 맛 취향 벡터 입력
     user_taste_vector = [1, 2, 3, 4, 5]
