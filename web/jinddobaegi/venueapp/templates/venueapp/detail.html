@@ -3,28 +3,31 @@
 {% block content %}
 
 <div>
-  <div style="text-align: center; max-width: 800px; margin: 4rem auto;">
+  <div class="pf_wrap pt-3 pf_wrap2">
 
-    <h1>
+    <h1 class="venue_name">
       {{ target_venue.name }}
     </h1>
-    <h5>
-      {{ target_venue.score | floatformat:2 }}
-    </h5>
-    <h5>
-      {{ target_venue.location | safe }}
-    </h5>
 
-    <div style="text-align: center;">
-      <a href="{{ target_venue.link | safe }}" target="_blank" rel="noopener noreferrer">
-        {{ target_venue.name }} 네이버지도 링크
+    <div class="venue_wrap">
+      <h5 class="venue_score">
+        <span>진또's 평점 : </span>{{ target_venue.score | floatformat:2 }}
+      </h5>
+      <h5 class="venue_address">
+        <span>주소 : </span>{{ target_venue.location | safe }}
+      </h5>
+
+      
+      <a class="venue_link" href="{{ target_venue.link | safe }}" target="_blank" rel="noopener noreferrer">
+        <span>네이버지도 링크 : </span>{{ target_venue.name }} 
       </a>
     </div>
+  </div>
+  
 
-    <hr>
-
-    <h2>이 식당과 비슷한 식당들</h2>
-    <ul>
+  <div class="pf_wrap pt-5 pf_wrap2" style="flex-direction: column; align-items: flex-start;">
+    <h2 class="sub_title">😋 해당 식당과 비슷한 식당은?</h2>
+    <ul class="sub_ul">
       {% if recommended_venues %}
         {% for recommended_venue in recommended_venues %}
             <li>
@@ -32,15 +35,17 @@
             </li>
         {% endfor %}
       {% else %}
-        <h2>이 식당은 정보가 적어 비슷한 식당을 찾기 어렵습니다</h2>
+        <h5>죄송합니다. 해당 식당은 정보가 적어 비슷한 식당을 찾기 어렵습니다.</h5>
       {% endif %}
     </ul>
-
   </div>
+
 </div>
 
-<a href="{% url 'venueapp:rate_venue' pk=target_venue.pk %}" class="btn btn-primary">
-    이 식당 평가하기
-</a>
+<div class="pf_wrap btn_wrap">
+  <a href="{% url 'venueapp:rate_venue' pk=target_venue.pk %}" class="btn btn_submit">
+      이 식당 평가하기
+  </a>
+</div>
 
 {% endblock %}
