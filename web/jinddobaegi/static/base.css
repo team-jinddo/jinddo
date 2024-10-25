@@ -134,7 +134,7 @@ input::placeholder {
     }
 }
 
-
+.btn_submit,
 input[type="submit"],
 button[type="submit"] {
     width: 100%;
@@ -151,7 +151,7 @@ button[type="submit"] {
     margin-bottom: 2.25rem;
     transition: 0.3s all ease-in;
 }
-
+.btn_submit:hover,
 input[type="submit"]:hover,
 input[type="submit"]:active,
 input[type="submit"]:focus,
@@ -163,6 +163,7 @@ button[type="submit"]:focus {
             #F5A04F 20%,
             #f68216 80%);
     transition: 0.3s;
+    color: #fff;
 }
 
 
@@ -323,6 +324,81 @@ button[type="submit"]:focus {
     padding-bottom: 0;
 }
 
+.pf_wrap2{
+    max-width: 1000px;
+    flex-direction: row;
+}
+.pf_wrap .venue_wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
+}
+.pf_wrap .venue_name{
+    font-weight: bold;
+    color: #F5A04F;
+    width: 50%;
+}
+.pf_wrap .venue_score{
+    font-size: 1.5rem;
+    color: #F5A04F;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+.pf_wrap .venue_score,
+.pf_wrap .venue_address,
+.pf_wrap .venue_link{
+    padding-top: 1rem;
+    text-align: left;
+}
+.pf_wrap .venue_score span,
+.pf_wrap .venue_address span,
+.pf_wrap .venue_link span{
+    font-weight: bold;
+    color: #333;
+}
+.pf_wrap .venue_address,
+.pf_wrap .venue_link{
+    font-size: 1.1rem;
+}
+.pf_wrap .venue_link:hover,
+.pf_wrap .venue_link:hover span{
+    color: #777;
+    text-decoration: underline;
+    text-underline-position: below;
+    -ms-text-underline-position: under;
+    text-underline-offset: 3px;
+}
+
+
+.pf_wrap .sub_title{
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+.pf_wrap .sub_ul{
+    padding-left: 2.5rem;
+    padding-top: 1rem;
+}
+.pf_wrap .sub_ul li a{
+    font-size: 1.2rem;
+    padding: 0.8rem 1.6rem;
+    background: #ffe2c8;
+    border-radius: 1rem;
+}
+.pf_wrap .sub_ul li:hover a{
+    background: #ffd0a6;
+    transition: 0.3s;
+}
+.pf_wrap .sub_ul h5{
+    font-size: 1rem;
+    color: #777;
+}
+
+
+
 .pf_detail{
     padding: 6.25rem 0;
     justify-content: space-between;
@@ -433,4 +509,13 @@ button[type="submit"]:focus {
 }
 .p-3{
     padding: 3rem 0;
+}
+.pt-3 {
+    padding-top: 3rem !important;
+}
+.pt-4 {
+    padding-top: 4rem !important;
+}
+.pt-5 {
+    padding-top: 5rem !important;
 }
