@@ -19,7 +19,13 @@
 
             {% else %}
                 <a href="{% url 'venueapp:reco1' %}" class="jinddo_header_navbar">
-                    <span>Recommendations</span>
+                    <span>맛취향 추천</span>
+                </a>
+                <a href="{% url 'venueapp:reco2' %}" class="jinddo_header_navbar">
+                    <span>비슷한 입맛 추천</span>
+                </a>
+                <a class="jinddo_header_navbar">
+                    <span>비슷한 타입 추천</span>
                 </a>
                 <a href="{% url 'accountapp:detail' pk=user.pk %}" class="jinddo_header_nav">
                     <span>MyPage</span>

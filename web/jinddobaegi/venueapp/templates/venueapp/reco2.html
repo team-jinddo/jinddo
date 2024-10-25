@@ -10,7 +10,7 @@
 </style>
     {% if recommends %}
     <div class="container">
-        <h2>{{ user.profile.nickname }}님 입맛에 맞는 식당 추천</h2>
+        <h2>{{ user.profile.nickname }} 님과 비슷한 입맛을 가진 사람들이 좋아한 식당 Top 5</h2>
       {% for venue in recommends %}
         <a href="{% url 'venueapp:detail' pk=venue.pk %}">
             {% include 'snippets/venue.html' with venue=venue %}
