@@ -8,9 +8,6 @@
         </h1>
 
         <div class="nav_wrap">
-            <a class="jinddo_header_navbar">
-                <span>Recommendations</span>
-            </a>
             {% if not user.is_authenticated %}
                 <a href="{% url 'accountapp:login' %}" class="jinddo_header_nav">
                     <span>Login</span>
@@ -21,6 +18,9 @@
                 </a>
 
             {% else %}
+                <a href="{% url 'venueapp:reco1' %}" class="jinddo_header_navbar">
+                    <span>Recommendations</span>
+                </a>
                 <a href="{% url 'accountapp:detail' pk=user.pk %}" class="jinddo_header_nav">
                     <span>MyPage</span>
                 </a>

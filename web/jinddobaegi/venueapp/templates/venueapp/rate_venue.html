@@ -1,0 +1,13 @@
+<!-- rate_venue.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center; max-width: 800px; margin: 4rem auto;">
+    <h1>Rate {{ target_venue.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
