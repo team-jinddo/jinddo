@@ -38,7 +38,7 @@ class Venue(models.Model):
 
 class UserVisit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey('venueapp.Venue', on_delete=models.CASCADE)
     visit_date = models.DateTimeField(auto_now_add=True)
 
     score = models.IntegerField(null=True)
