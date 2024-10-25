@@ -25,27 +25,22 @@
 
     <h2>이 식당과 비슷한 식당들</h2>
     <ul>
-      {% for recommended_venue in recommended_venues %}
-          <li>
-              <a href="{% url 'venueapp:detail' recommended_venue.id %}">{{ recommended_venue.name }}</a>
-          </li>
-      {% empty %}
-          <li>이 식당은 정보가 적어 추천을 드리기가 어렵습니다. Maybe next time</li>
-      {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h2>현재 유저와 비슷한 취향</h2>
-    <ul>
-      {% for rec in recommends %}
-      <li>
-        <a href="">{{ rec.name }}</a>
-      </li>
-      {% endfor %}
+      {% if recommended_venues %}
+        {% for recommended_venue in recommended_venues %}
+            <li>
+                <a href="{% url 'venueapp:detail' recommended_venue.id %}">{{ recommended_venue.name }}</a>
+            </li>
+        {% endfor %}
+      {% else %}
+        <h2>이 식당은 정보가 적어 비슷한 식당을 찾기 어렵습니다</h2>
+      {% endif %}
     </ul>
 
   </div>
 </div>
+
+<a href="{% url 'venueapp:rate_venue' pk=target_venue.pk %}" class="btn btn-primary">
+    이 식당 평가하기
+</a>
 
 {% endblock %}
